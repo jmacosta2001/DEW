@@ -54,5 +54,41 @@ const datosJson = `{
   console.log(datos.persona.nombre);         // Salida: "Carlos"
   console.log(datos.persona.direccion.calle); // Salida: "Calle Falsa 123"
   console.log(datos.aficiones[1]);            // Salida: "lectura"
+
+    //_-----------------------------------------------------
+    //4. Modificar un Objeto JSON
+    // Objeto JSON inicial
+const datos2 = JSON.parse('{"nombre": "Sara", "edad": 32, "ciudad": "Valencia"}');
+
+// Modificar una propiedad
+datos2.edad = 33;
+
+// Agregar una nueva propiedad
+datos2.ocupacion = "Ingeniera";
+
+// Eliminar una propiedad
+delete datos2.ciudad;
+
+console.log(JSON.stringify(datos2)); 
+// Salida: '{"nombre":"Sara","edad":33,"ocupacion":"Ingeniera"}'
+
+//_-----------------------------------------------------
+/*
+5 .Almacenar y Recuperar JSON en Local Storage
+Puedes usar localStorage para almacenar datos en formato JSON de forma persistente en el navegador.*/
+
+  // Objeto a almacenar
+const usuario = {
+    nombre: "Juan",
+    edad: 30,
+    ciudad: "Madrid"
+  };
   
+  // Almacenar el objeto en localStorage
+  localStorage.setItem("usuario", JSON.stringify(usuario));
+  
+  // Recuperar el objeto desde localStorage
+  const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
+  
+  console.log(usuarioGuardado.nombre); // Salida: "Juan"
   
