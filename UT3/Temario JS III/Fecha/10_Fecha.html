@@ -7,6 +7,15 @@
 
 
 <script>
+
+const fechaInicial = new Date('2024-11-05'); 
+const diasASumar = 75; 
+const nuevaFecha = new Date(fechaInicial); 
+nuevaFecha.setDate(nuevaFecha.getDate() + diasASumar); 
+console.log('Fecha original:', fechaInicial);
+console.log('Fecha nueva:', nuevaFecha);
+
+/*
  
  const fecha = new Date(); // Fecha actual
 console.log('Fecha original:', fecha);
@@ -36,7 +45,7 @@ console.log('Fecha después de sumar 1 año:', fecha);
 // Restar 2 años
 fecha.setFullYear(fecha.getFullYear() - 2);
 console.log('Fecha después de restar 2 años:', fecha);
-
+*/
 </script>
 
 </body>
