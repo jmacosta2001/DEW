@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo con children y childNodes</title>
+  <style>
+    .contenedor {
+      background-color: lightgray;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 8px;
+    }
+    .item {
+      background-color: lightcoral;
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #ccc;
+    }
+    .highlight {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body id="body">
+
+  <div class="contenedor" id="contenedor">
+    <p>Texto dentro de un párrafo.</p>
+    <div class="item">Elemento 1</div>
+    <div class="item">Elemento 2</div>
+    <div class="item">Elemento 3</div>
+    <div class="item">Elemento 4</div>
+    Texto fuera de etiqueta
+  </div>
+
+  
+
+  <button id="mostrarHijosElement">Mostrar hijos con element.children</button>
+  <button id="resaltarPrimerHijoElement">Resaltar primer hijo con element.firstElementChild</button>
+  <button id="resaltarUltimoHijoElement">Resaltar último hijo con element.lastElementChild</button>
+
+  <button id="mostrarHijosNode">Mostrar hijos con node.childNodes</button>
+  <button id="resaltarPrimerHijoNode">Resaltar primer hijo con node.firstChild</button>
+  <button id="resaltarUltimoHijoNode">Resaltar último hijo con node.lastChild</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

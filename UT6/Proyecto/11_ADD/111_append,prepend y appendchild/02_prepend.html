@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo de prepend()</title>
+  <style>
+    .contenedor {
+      border: 2px solid #ccc;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    .highlight {
+      background-color: yellow;
+      padding: 5px;
+      border: 2px solid red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ejemplo de <code>prepend()</code> para agregar elementos al inicio</h1>
+
+  <button id="agregarElemento">Agregar un nuevo párrafo al inicio</button>
+
+  <div id="contenedor" class="contenedor">
+    <p>Este es el primer párrafo en el contenedor.</p>
+  </div>
+
+  <script>
+    // Obtener el contenedor donde se añadirán los elementos
+    const contenedor = document.getElementById('contenedor');
+    
+    // Referencia al botón para agregar un párrafo
+    const botonAgregar = document.getElementById('agregarElemento');
+    
+    // Función para agregar un nuevo párrafo al inicio usando prepend()
+    botonAgregar.addEventListener('click', () => {
+      // Crear un nuevo párrafo
+      const nuevoParrafo = document.createElement('p');
+      nuevoParrafo.textContent = 'Este es un nuevo párrafo agregado al inicio.';
+
+      // Añadir el nuevo párrafo al inicio del contenedor
+      contenedor.prepend(nuevoParrafo);
+
+      // Resaltar el nuevo párrafo
+      nuevoParrafo.classList.add('highlight');
+    });
+  </script>
+
+</body>
+</html>

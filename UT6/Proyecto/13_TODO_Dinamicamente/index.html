@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Dinámico y Tabla</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+    .form-container {
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Formulario Dinámico y Tabla de Alumnos</h1>
+
+  <!-- Contenedor para el formulario dinámico -->
+  <div id="form-container" class="form-container"></div>
+
+  <!-- Botón para añadir un alumno -->
+  <button id="addAlumnoBtn">Crea formulario </button>
+
+  <!-- Tabla para mostrar los alumnos -->
+  <table id="alumnosTable">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Curso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Las filas de los alumnos se agregarán aquí -->
+    </tbody>
+  </table>
+
+  <script>
+    // Referencias a los elementos
+    const formContainer = document.getElementById('form-container');
+    const addAlumnoBtn = document.getElementById('addAlumnoBtn');
+    const alumnosTable = document.getElementById('alumnosTable').getElementsByTagName('tbody')[0];
+
+    // Función para crear el formulario dinámicamente
+    function crearFormulario() {
+      const formulario = document.createElement('form');
+
+      // Crear campo de nombre
+      const nombreLabel = document.createElement('label');
+      nombreLabel.textContent = 'Nombre: ';
+      const nombreInput = document.createElement('input');
+      nombreInput.type = 'text';
+      nombreInput.id = 'nombre';
+      nombreInput.required = true;
+      formulario.appendChild(nombreLabel);
+      formulario.appendChild(nombreInput);
+      formulario.appendChild(document.createElement('br'));
+
+      // Crear campo de edad
+      const edadLabel = document.createElement('label');
+      edadLabel.textContent = 'Edad: ';
+      const edadInput = document.createElement('input');
+      edadInput.type = 'number';
+      edadInput.id = 'edad';
+      edadInput.required = true;
+      formulario.appendChild(edadLabel);
+      formulario.appendChild(edadInput);
+      formulario.appendChild(document.createElement('br'));
+
+      // Crear campo de curso
+      const cursoLabel = document.createElement('label');
+      cursoLabel.textContent = 'Curso: ';
+      const cursoInput = document.createElement('input');
+      cursoInput.type = 'text';
+      cursoInput.id = 'curso';
+      cursoInput.required = true;
+      formulario.appendChild(cursoLabel);
+      formulario.appendChild(cursoInput);
+      formulario.appendChild(document.createElement('br'));
+
+      // Crear el botón de enviar
+      const submitButton = document.createElement('button');
+      submitButton.textContent = 'Añadir Alumno';
+      submitButton.type = 'submit';
+      formulario.appendChild(submitButton);
+
+      // Añadir el formulario al contenedor
+      formContainer.innerHTML = ''; // Limpiar el contenedor antes de agregar el formulario
+      formContainer.appendChild(formulario);
+
+      // Añadir evento para manejar el envío del formulario
+      formulario.addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevenir el comportamiento por defecto del formulario (recarga de página)
+
+        // Obtener los valores del formulario
+        const nombre = nombreInput.value;
+        const edad = edadInput.value;
+        const curso = cursoInput.value;
+
+        // Crear una nueva fila en la tabla
+        const nuevaFila = alumnosTable.insertRow();
+        nuevaFila.insertCell().textContent = nombre;
+        nuevaFila.insertCell().textContent = edad;
+        nuevaFila.insertCell().textContent = curso;
+
+        // Limpiar el formulario después de añadir un alumno
+        formulario.reset();
+      });
+    }
+
+    // Añadir el evento al botón "Añadir Alumno"
+    addAlumnoBtn.addEventListener('click', function () {
+      crearFormulario(); // Crear el formulario cada vez que se hace clic en "Añadir Alumno"
+    });
+  </script>
+
+</body>
+</html>

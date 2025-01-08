@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo Añadir Elemento Antes y Después</title>
+  <style>
+    .highlight {
+      background-color: yellow;
+      padding: 5px;
+      border: 2px solid red;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="contenedor">
+    <p id="parrafo1">Primer párrafo</p>
+    <p id="parrafo2">Segundo párrafo</p>
+    <p id="parrafo3">Tercer párrafo</p>
+  </div>
+
+  <button id="insertarAntes">Insertar antes del primer párrafo</button>
+  <button id="insertarDespues">Insertar después del segundo párrafo</button>
+
+  <script>
+    // Referencias a los elementos existentes
+    const contenedor = document.getElementById('contenedor');
+    const parrafo1 = document.getElementById('parrafo1');
+    const parrafo2 = document.getElementById('parrafo2');
+
+    // Crear un nuevo párrafo para insertar
+    const nuevoParrafo = document.createElement('p');
+    nuevoParrafo.textContent = 'Nuevo párrafo insertado.';
+
+   // Botón para insertar antes del primer párrafo
+   document.getElementById('insertarAntes').addEventListener('click', (event) => {
+    event.preventDefault();  // Evitar que el formulario se envíe
+      // Insertar el nuevo párrafo antes del primer párrafo
+      contenedor.insertBefore(nuevoParrafo, parrafo1);
+      console.log("Nuevo párrafo insertado antes del primer párrafo.");
+    });
+
+    // Botón para insertar después del último párrafo
+    document.getElementById('insertarDespues').addEventListener('click', (event) => {
+        event.preventDefault();  // Evitar que el formulario se envíe
+      // Insertar el nuevo párrafo después del último párrafo
+      contenedor.insertBefore(nuevoParrafo, null);
+      console.log("Nuevo párrafo insertado después del último párrafo.");
+    });
+  </script>
+
+</body>
+</html>

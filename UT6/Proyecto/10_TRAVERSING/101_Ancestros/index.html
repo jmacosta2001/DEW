@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo de parentNode, parentElement y closest</title>
+  <style>
+    .class_container {
+      background-color: lightgray;
+      padding: 20px;
+      margin: 20px;
+    }
+    .box {
+      background-color: lightcoral;
+      padding: 10px;
+      margin: 10px;
+      border: 1px solid #ccc;
+    }
+    .highlight {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="class_container" id="container">
+    DIV_Id_Container
+    <div class="box" id="box1">
+      <p>Este es el primer párrafo dentro de box1.</p>
+    </div>
+    <div class="box" id="box2">
+      <p>Este es el primer párrafo dentro de box2.</p>
+    </div>
+  </div>
+
+  <button id="findParentNode">Usar parentNode sobre box1</button>
+  <button id="findParentElement">Usar parentElement sobre box2</button>
+  <button id="findClosest">Usar closest sobre box1</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

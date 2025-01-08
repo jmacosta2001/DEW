@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo de Nodos Hermanos</title>
+  <style>
+    /* Estilo para resaltar los elementos modificados */
+    .highlight {
+      background-color: yellow;
+      padding: 5px;
+      border: 2px solid red;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="contenedor">
+    <!--Whitespace between elements is considered text nodes-->
+    <p>Primer párrafo</p><p>Segundo párrafo</p><p>Tercer párrafo</p><p>Cuarto párrafo</p>
+  </div>
+
+  <ul>
+    <li><a href="#">Sección 1</a></li>
+    <li><a href="#">Sección 2</a></li>
+    <li><a href="#">Sección 3</a></li>
+    <li><a href="#">Sección 4</a></li>
+</ul>
+
+  <!-- Botones para la manipulación -->
+  <button id="mostrarHermanoAnterior">Mostrar hermano anterior a segundoParrafo</button>
+  <button id="mostrarHermanoSiguiente">Mostrar hermano siguiente a segundoParrafo</button>
+  <button id="cambiarHermanoAnterior">Cambiar hermano anterior a segundoParrafo</button>
+  <button id="cambiarHermanoSiguiente">Cambiar hermano siguiente a segundoParrafo</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo Añadir Elemento Antes y Después</title>
+  <style>
+    .highlight {
+      background-color: yellow;
+      padding: 5px;
+      border: 2px solid red;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="contenedor">
+    <p id="parrafo1">Primer párrafo</p>
+    <p id="parrafo2">Segundo párrafo</p>
+    <p id="parrafo3">Tercer párrafo</p>
+  </div>
+
+  <button id="insertarAntes">Insertar antes del primer párrafo</button>
+  <button id="insertarDespues">Insertar después del segundo párrafo</button>
+
+  <script>
+    // Referencias a los elementos existentes
+    const contenedor = document.getElementById('contenedor');
+    const parrafo1 = document.getElementById('parrafo1');
+    const parrafo2 = document.getElementById('parrafo2');
+
+    // Crear un nuevo párrafo para insertar
+    const nuevoParrafo = document.createElement('p');
+    nuevoParrafo.textContent = 'Nuevo párrafo insertado.';
+
+    // Botón para insertar un nuevo elemento antes del primer párrafo
+    document.getElementById('insertarAntes').addEventListener('click', () => {
+      // Insertar el nuevo párrafo antes del primer párrafo
+      //cloneNode(true): Se utiliza cloneNode(true) para clonar el nuevo párrafo, ya que si no se clona, el mismo elemento se movería y se perdería.
+      contenedor.insertBefore(nuevoParrafo.cloneNode(true), parrafo1);
+      console.log("Nuevo párrafo insertado antes del primer párrafo.");
+    });
+
+    // Botón para insertar un nuevo elemento después del segundo párrafo
+    document.getElementById('insertarDespues').addEventListener('click', () => {
+      // Insertar el nuevo párrafo después del segundo párrafo usando before()
+      const nuevoElementoDespues = nuevoParrafo.cloneNode(true);
+      parrafo2.after(nuevoElementoDespues);
+      console.log("Nuevo párrafo insertado después del segundo párrafo.");
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+Característica	appendChild()	                                        append()
+Tipos de datos	Solo nodos (elementos y nodos de texto)	                Nodos y texto (sin necesidad de crear nodos de texto)
+Múltiples elementos	No puede añadir varios elementos a la vez	        Puede añadir múltiples elementos o texto a la vez
+Valor de retorno	Retorna el nodo añadido al contenedor	            No retorna nada
+Soporte de texto	Requiere envolver el texto en un nodo Text	        Permite pasar texto directamente
+Compatibilidad	Compatible en todos los navegadores	                    Compatible en navegadores modernos (IE no soporta append() en versiones antiguas)
