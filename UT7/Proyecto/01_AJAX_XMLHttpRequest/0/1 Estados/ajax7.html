@@ -1,0 +1,41 @@
+<html>
+
+<body>
+    <script language="javascript" type="text/javascript">
+
+        function send_with_ajax() {
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', "ajax_info.txt", true);
+            // xhr.setRequestHeader("Authorization", "Basic YWRtaW46QWRtaW4xMjM");
+
+            xhr.send(null);
+
+            // listen for `load` event
+            xhr.onload = () => {
+                //load — This event is invoked when the result is ready. It is equivalent to the xhr.onreadystatechange event with xhr.readyState == 4.
+                alert(`Data Loaded: ${xhr.status} ${xhr.response}`)
+            }
+            // listen for `error` event
+            xhr.onerror = () => {
+                alert('Request failed.')
+            }
+
+            // listen for `progress` event
+            xhr.onprogress = event => {
+                // event.loaded returns how many bytes are downloaded
+                // event.total returns the total number of bytes
+                // event.total is only available if server sends `Content-Length` header
+                alert(`Downloaded ${event.loaded} of ${event.total}`)
+            }
+
+        }
+
+
+    </script>
+
+    <button onClick="send_with_ajax()">Get Contain</button><br />
+    <label id="resultados"></label>
+</body>
+
+</html>

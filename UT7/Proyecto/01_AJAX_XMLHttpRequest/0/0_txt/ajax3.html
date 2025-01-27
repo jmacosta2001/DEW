@@ -1,0 +1,41 @@
+<html>
+
+<body>
+    <script language="javascript" type="text/javascript">
+
+        function crearXMLHttpRequest() {
+            var xhr = null;
+            if (window.XMLHttpRequest || window.ActiveXObject) {
+                if (window.ActiveXObject) { //IE 
+                    try {
+                        xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                    } catch (exception) {
+                        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                } else { //FIRE and others
+                    xhr = new XMLHttpRequest();
+                }
+            } else {
+                alert("Your browser does not support XMLHTTP Request...!");
+            }
+            return xhr;
+        }
+        function send_with_ajax() {
+            //siempre implementaremos una función que nos retorne un objeto XMLHttpRequest haciendo transparente el proceso en cuanto a navegador donde se esté ejecutando:
+            var xhr = crearXMLHttpRequest();
+
+            xhr.open("GET", "ajax_info.txt", true);    // Make sure file is in same server
+            xhr.send(null);
+
+            //A load event fires only when the request has completed successfully.
+            xhr.onload = function () {
+                document.getElementById("textArea").value = xhr.responseText;
+            };
+        }
+    </script>
+
+    <button onClick="send_with_ajax()">Get Contain</button><br />
+    <textarea id="textArea" cols="40" rows="5"></textArea>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<html>
+
+<body>
+  <script language="javascript" type="text/javascript">
+
+    function send_with_ajax() {
+      /* providing token in bearer */
+      fetch('https://dummyjson.com/auth/products', {
+        method: 'GET', /* or POST/PUT/PATCH/DELETE */
+        headers: {
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoia21pbmNoZWxsZSIsImVtYWlsIjoia21pbmNoZWxsZUBxcS5jb20iLCJmaXJzdE5hbWUiOiJKZWFubmUiLCJsYXN0TmFtZSI6IkhhbHZvcnNvbiIsImdlbmRlciI6ImZlbWFsZSIsImltYWdlIjoiaHR0cHM6Ly9yb2JvaGFzaC5vcmcvYXV0cXVpYXV0LnBuZyIsImlhdCI6MTY3NDk0Mzc1MSwiZXhwIjoxNjc0OTQ3MzUxfQ.LUseUE-4Tn0-3kcKfFMKrkhTnwU2OgllRAUIFQTCaY0',
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(res => res.json())
+        .then(console.log);
+    }
+
+  </script>
+
+  <button onClick="send_with_ajax()">Get Contain</button><br />
+  <label id="resultados"></label>
+</body>
+
+</html>

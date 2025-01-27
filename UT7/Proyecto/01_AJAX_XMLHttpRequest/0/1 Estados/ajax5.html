@@ -1,0 +1,41 @@
+<html>
+
+<body>
+    <script language="javascript" type="text/javascript">
+
+        function send_with_ajax() {
+            /*Valor	Descripción
+              0	No inicializado (objeto creado, pero no se ha invocado el método open)
+              1	Cargando (objeto creado, pero no se ha invocado el método send)
+              2	Cargado (se ha invocado el método send, pero el servidor aún no ha respondido)
+              3	Interactivo (se han recibido algunos datos, aunque no se puede emplear la propiedad responseText)
+              4	Completo (se han recibido todos los datos de la respuesta del servidor)
+          */
+            var resultados = document.getElementById("resultados");
+            const xhr = new XMLHttpRequest();
+            resultados.innerHTML = "UNSENT " + xhr.readyState;
+            //console.log('UNSENT', xhr.readyState); // readyState will be 0
+
+
+            xhr.open('GET', "ajax_info.txt", true);
+            resultados.innerHTML = resultados.innerHTML + " OPENED " + xhr.readyState;
+
+
+            xhr.onprogress = () => {
+                resultados.innerHTML = resultados.innerHTML + " LOADING " + xhr.readyState;
+            };
+
+            xhr.onload = () => {
+                console.log('DONE', xhr.readyState); // readyState will be 4
+                resultados.innerHTML = resultados.innerHTML + " DONE " + xhr.readyState;
+            };
+
+            xhr.send(null);
+        }
+    </script>
+
+    <button onClick="send_with_ajax()">Get Contain</button><br />
+    <label id="resultados"></label>
+</body>
+
+</html>

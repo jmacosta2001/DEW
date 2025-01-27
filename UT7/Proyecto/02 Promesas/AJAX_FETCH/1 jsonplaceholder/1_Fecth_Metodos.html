@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch CRUD Example</title>
+    <style>
+        #output {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            white-space: pre-wrap; /* Para preservar saltos de línea */
+        }
+        button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fetch CRUD Example</h1>
+    <button id="getBtn">GET (Read)</button>
+    <button id="postBtn">POST (Create)</button>
+    <button id="putBtn">PUT (Update)</button>
+    <button id="deleteBtn">DELETE (Delete)</button>
+    <div id="output">Click a button to perform an action.</div>
+
+    <script>
+        const outputDiv = document.getElementById('output');
+
+        // Base URL for JSONPlaceholder API
+        const baseURL = 'https://jsonplaceholder.typicode.com/posts';
+
+        // GET (Read)
+        document.getElementById('getBtn').addEventListener('click', () => {
+            outputDiv.textContent = 'Fetching data...';
+
+            fetch(baseURL)
+                .then(response => response.json())
+                .then(data => {
+                    outputDiv.textContent = `Fetched data:\n${JSON.stringify(data.slice(0, 5), null, 2)}`;
+                })
+                .catch(error => {
+                    outputDiv.textContent = `Error fetching data: ${error.message}`;
+                });
+        });
+
+        // POST (Create)
+        document.getElementById('postBtn').addEventListener('click', () => {
+            outputDiv.textContent = 'Creating a new post...';
+
+            const newPost = {
+                title: 'New Post',
+                body: 'This is a new post created via fetch.',
+                userId: 1
+            };
+
+            fetch(baseURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newPost)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    outputDiv.textContent = `Post created:\n${JSON.stringify(data, null, 2)}`;
+                })
+                .catch(error => {
+                    outputDiv.textContent = `Error creating post: ${error.message}`;
+                });
+        });
+
+        // PUT (Update)
+        document.getElementById('putBtn').addEventListener('click', () => {
+            outputDiv.textContent = 'Updating a post...';
+
+            const updatedPost = {
+                id: 1,
+                title: 'Updated Post',
+                body: 'This is an updated post.',
+                userId: 1
+            };
+
+            fetch(`${baseURL}/1`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedPost)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    outputDiv.textContent = `Post updated:\n${JSON.stringify(data, null, 2)}`;
+                })
+                .catch(error => {
+                    outputDiv.textContent = `Error updating post: ${error.message}`;
+                });
+        });
+
+        // DELETE (Delete)
+        document.getElementById('deleteBtn').addEventListener('click', () => {
+            outputDiv.textContent = 'Deleting a post...';
+
+            fetch(`${baseURL}/1`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        outputDiv.textContent = 'Post deleted successfully.';
+                    } else {
+                        throw new Error(`Failed to delete post. Status: ${response.status}`);
+                    }
+                })
+                .catch(error => {
+                    outputDiv.textContent = `Error deleting post: ${error.message}`;
+                });
+        });
+    </script>
+</body>
+</html>

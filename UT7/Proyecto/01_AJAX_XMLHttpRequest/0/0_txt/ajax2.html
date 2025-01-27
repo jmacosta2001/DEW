@@ -1,0 +1,40 @@
+<html>
+
+<body>
+    <script language="javascript" type="text/javascript">
+        function send_with_ajax() {
+
+            //The part checks if an object can be created without throwing an error.
+            //If everything goes well, it assigns a name to the object that will be used for "talking with the server".
+            //If this throws an error, it means that the user has an older browser (IE 5 or IE6), so instead it tries to create an which is essentially the same but works only for these older browsers.if (window.XMLHttpRequest)XMLHttpRequestActiveXObject
+            if (window.XMLHttpRequest || window.ActiveXObject) {
+                if (window.ActiveXObject) { //IE 
+                    try {
+                        xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                    } catch (exception) {
+                        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                } else { //FIRE and others
+                    xhr = new XMLHttpRequest();
+                }
+            } else {
+                alert("Your browser does not support XMLHTTP Request...!");
+            }
+
+
+
+            xhr.open("GET", "ajax_info.txt", true);    // Make sure file is in same server
+            xhr.send(null);
+
+            ////A load event fires only when the request has completed successfully.
+            xhr.onload = function () {
+                document.getElementById("textArea").value = xhr.responseText;
+            };
+        }
+    </script>
+
+    <button onClick="send_with_ajax()">Get Contain</button><br />
+    <textarea id="textArea" cols="40" rows="5"></textArea>
+</body>
+
+</html>

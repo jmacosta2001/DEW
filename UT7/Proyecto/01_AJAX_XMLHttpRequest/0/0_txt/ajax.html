@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+  <div id="demo">
+    <h2>The XMLHttpRequest Object</h2>
+    <button type="button" onclick="loadDoc()">Change Content</button>
+  </div>
+
+  <script>
+    function loadDoc() {
+      //Asynchronous JavaScript And XML.
+      //The XMLHttpRequest specification defines an API that provides scripted client functionality for transferring data between a client and a server.
+      const xhttp = new XMLHttpRequest();
+
+      //A load event fires only when the request has completed successfully.
+      xhttp.onload = function () {
+        document.getElementById("demo").innerHTML =
+          this.responseText;
+      }
+      /*
+      open(method, url)
+    open(method, url, async)
+    open(method, url, async, user)
+    open(method, url, async, user, password)
+    
+    method: "GET", "POST", "PUT", "DELETE"
+     async: Boolean parameter, defaulting to true, indicating whether or not to perform the operation asynchronously
+      */
+      xhttp.open("GET", "ajax_info.txt");
+      xhttp.send();
+
+    }
+  </script>
+
+</body>
+
+</html>
