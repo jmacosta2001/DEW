@@ -1,0 +1,68 @@
+<html>
+
+<body>
+  <script language="javascript" type="text/javascript">
+
+    function send_with_ajax() {
+      var xhr = new XMLHttpRequest();
+      xhr.onload = reqListener;
+
+      xhr.addEventListener("progress", updateProgress, false);
+      xhr.addEventListener("load", transferComplete, false);
+      xhr.addEventListener("error", transferFailed, false);
+      xhr.addEventListener("abort", transferCanceled, false);
+
+      xhr.open('GET', "ajax_info.txt", true);
+      // xhr.setRequestHeader("Authorization", "Basic YWRtaW46QWRtaW4xMjM");
+
+      xhr.send(null);
+
+      //A readystatechange event fires every time the readyState changes (which is several times).
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === xhr.DONE) {
+          alert("State: " + xhr.readyState + " and Status: " + xhr.status + " and Response: " + xhr.responseText);
+        }
+        else {
+          // for example ERROR etc.
+
+        }
+      }
+
+    }
+    function reqListener() {
+      console.log(this.responseText);
+    }
+
+    function updateProgress(oEvent) {
+      if (oEvent.lengthComputable) {
+        var percentComplete = oEvent.loaded / oEvent.total;
+        alert("The transfer is ." + percentComplete * 100);
+      } else {
+        // Unable to compute progress information since the total size is unknown
+        alert("The transfer is  unknown");
+      }
+    }
+
+    function transferComplete(evt) {
+      alert("The transfer is complete.");
+    }
+
+    function transferFailed(evt) {
+      alert("An error occurred while transferring the file.");
+    }
+
+    function transferCanceled(evt) {
+      alert("The transfer has been canceled by the user.");
+    }
+
+
+
+
+
+  </script>
+
+  <button onClick="send_with_ajax()">Get Contain</button><br />
+  <label id="resultados"></label>
+</body>
+
+</html>

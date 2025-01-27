@@ -1,0 +1,33 @@
+<html>
+
+<body>
+	<script language="javascript" type="text/javascript">
+
+		function send_with_ajax() {
+			const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+			var resultados = document.getElementById("resultados");
+			const xhr = new XMLHttpRequest();
+			xhr.onload = () => {
+				if (xhr.status === 200) {
+					console.log(JSON.parse(xhr.responseText));
+					resultados.innerHTML = xhr.responseText;
+				} else {
+					console.log('Server response:', xhr.status);
+				}
+			};
+			xhr.onerror = () => {
+			};
+			xhr.open('DELETE', `${apiUrl}/101`, true);
+			xhr.send();
+
+		}
+
+	</script>
+
+	<button onClick="send_with_ajax()">Get Contain</button><br />
+	<label id="resultados"></label>
+</body>
+
+</html>
+
+//https://dummyjson.com/

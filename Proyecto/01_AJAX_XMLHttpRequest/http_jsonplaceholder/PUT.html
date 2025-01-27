@@ -1,0 +1,44 @@
+<html>
+
+<body>
+	<script language="javascript" type="text/javascript">
+
+		function send_with_ajax() {
+			const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+			var resultados = document.getElementById("resultados");
+
+			const data = JSON.stringify({
+				id: 1,
+				title: 'foo',
+				body: 'bar',
+				userId: 1
+			});
+			const xhr = new XMLHttpRequest();
+			xhr.onload = () => {
+				if (xhr.status === 200) {
+					const post = JSON.parse(xhr.responseText);
+					resultados.innerHTML = xhr.responseText;
+				} else {
+					console.log('Server response:', xhr.status);
+				}
+			};
+			xhr.onerror = () => {
+				resultados.innerHTML = 'An error occurred, not able to process the request.';
+				console.log('An error occurred, not able to process the request.');
+			};
+			xhr.open('PUT', `${apiUrl}/1`, true);//update
+			xhr.setRequestHeader('Content-Type', 'application/json');
+			xhr.send(data);
+
+
+
+		}
+
+
+	</script>
+
+	<button onClick="send_with_ajax()">Get Contain</button><br />
+	<label id="resultados"></label>
+</body>
+
+</html>

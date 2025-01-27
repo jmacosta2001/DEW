@@ -1,0 +1,45 @@
+<html>
+
+<body>
+  <script language="javascript" type="text/javascript">
+
+    function send_with_ajax() {
+      // create an XHR object
+      const xhr = new XMLHttpRequest()
+      var resultados = document.getElementById("resultados");
+
+      // listen for `onload` event
+      xhr.onload = () => {
+        // process response
+        if (xhr.status == 200) {
+          // parse JSON data
+          //You can use response when you get JSON from the server, and have it translated into a JavaScript object.
+          //You can use responseText when you don't own the server, and the responseType is a format you don't want to use.
+          //JSON.stringify(xhr.response);
+          //xhr.responseType = 'json';
+          //JSON.parse(xhr.response);
+          resultados.innerHTML = xhr.responseText;
+
+        } else {
+          console.error('Error!')
+        }
+      }
+
+      // create a `GET` request
+      xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts')
+
+      // send request
+      xhr.send()
+
+
+
+    }
+
+
+  </script>
+
+  <button onClick="send_with_ajax()">Get Contain</button><br />
+  <label id="resultados"></label>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>AJAX Demo</title>
+  <script>
+    function loadAjaxReponseJSON() {
+      var xmlHTTPRequest;
+      var txtToBeWritten, record, i;
+      if (window.XMLHttpRequest) {// Validation for Internet Explorer 7 and upo, Firefox, Chrome, etc 
+        xmlHTTPRequest = new XMLHttpRequest();
+      }
+      else {// Web browser is Internet Explorer 5 or 6 
+        xmlHTTPRequest = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlHTTPRequest.onreadystatechange = function () {
+        if (xmlHTTPRequest.readyState == 4 && xmlHTTPRequest.status == 200) {
+          var jsonResponse = JSON.parse(xmlHTTPRequest.responseText);
+          txtToBeWritten = "";
+          for (i = 0; i < jsonResponse.records.record.length; i++) {
+            txtToBeWritten = txtToBeWritten + jsonResponse.records.record[i].title + "<br>";
+          }
+          document.getElementById("AjaxResponseJSONHere").innerHTML = txtToBeWritten;
+        }
+      }
+      xmlHTTPRequest.open("GET", "alumnos.json", true);
+      xmlHTTPRequest.send();
+    }
+  </script>
+</head>
+
+<body>
+  <form id="form1">
+    <br />
+    <h1>AJAX DEMO: JSON<h1>
+        <h2>
+          Display record titles:
+          <input type="button" id="submit" value="Click Me!" onclick="loadAjaxReponseJSON()" />
+          <div id="AjaxResponseJSONHere">
+          </div>
+        </h2>
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<html>
+
+<body>
+    <script language="javascript" type="text/javascript">
+
+        //siempre implementaremos una función que nos retorne un objeto XMLHttpRequest haciendo transparente el proceso en cuanto a navegador donde se esté ejecutando:
+        var xhr = crearXMLHttpRequest();
+
+        function crearXMLHttpRequest() {
+            var xhr = null;
+            if (window.XMLHttpRequest || window.ActiveXObject) {
+                if (window.ActiveXObject) { //IE 
+                    try {
+                        xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                    } catch (exception) {
+                        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                } else { //FIRE and others
+                    xhr = new XMLHttpRequest();
+                }
+            } else {
+                alert("Your browser does not support XMLHTTP Request...!");
+            }
+            return xhr;
+        }
+        function send_with_ajax() {
+
+
+            xhr.open("GET", "ajax_info.txt", true);    // Make sure file is in same server
+            xhr.send(null);
+            //A load event fires only when the request has completed successfully.
+            xhr.onload = procesar;
+        }
+
+        function procesar() {
+            var resultados = document.getElementById("resultados");
+
+            if (xhr.readyState === xhr.DONE) //Valor numérico (entero) que almacena el estado de la petición
+            /*Valor	Descripción
+                0	No inicializado (objeto creado, pero no se ha invocado el método open)
+                1	Cargando (objeto creado, pero no se ha invocado el método send)
+                2	Cargado (se ha invocado el método send, pero el servidor aún no ha respondido)
+                3	Interactivo (se han recibido algunos datos, aunque no se puede emplear la propiedad responseText)
+                4	Completo (se han recibido todos los datos de la respuesta del servidor)
+            */ {
+                resultados.innerHTML = xhr.responseText + xhr.DONE; //El contenido de la respuesta del servidor en forma de cadena de texto
+            }
+            else {
+                resultados.innerHTML = 'Cargando...';
+            }
+        }
+
+    </script>
+
+    <button onClick="send_with_ajax()">Get Contain</button><br />
+    <label id="resultados"></label>
+</body>
+
+</html>

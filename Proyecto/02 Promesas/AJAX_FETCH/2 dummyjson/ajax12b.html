@@ -1,0 +1,28 @@
+<html>
+
+<body>
+	<script language="javascript" type="text/javascript">
+
+		function send_with_ajax() {
+
+			var resultados = document.getElementById("resultados");
+			fetch('https://dummyjson.com/auth/login', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+
+					username: 'kminchelle',
+					password: '0lelplR',
+				})
+			})
+				.then(res => res.json())
+				.then(result => resultados.innerHTML = JSON.stringify(result)); //Convert a JavaScript object into a string JSON.stringify
+		}
+
+	</script>
+
+	<button onClick="send_with_ajax()">Get Contain</button><br />
+	<label id="resultados"></label>
+</body>
+
+</html>
